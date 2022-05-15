@@ -75,6 +75,8 @@ class Inference_pb(object):
                             plt.imshow(aPred[0,:, :,aI-1], cmap=plt.cm.gray, vmin=0.0, vmax=1.0)
                             # misc.imsave('out' + str(aI) + '.jpg', aPred[0,:, :,aI-1])
                             a.set_title('Channel: ' + str(aI-1))
+                            store_inferred_path = "./demo_images/Infered_results/channel_"+ str(aI-1) + "/" + aImgPath.split("/")[-1];
+                            cv2.imwrite(store_inferred_path, aPred[0,:, :,aI-1]);
                 
                 img_name = os.path.basename(aImgPath)
                 save_name = os.path.splitext(img_name)[0]
