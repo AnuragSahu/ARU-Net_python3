@@ -142,8 +142,8 @@ class Inference_pb(object):
         
         plt.axis("off")
         plt.imshow(lines, cmap='gray')
-        save_path = "./out/ab.jpg"
-        plt.savefig(save_path)
+        # save_path = "./out/ab.jpg"
+        # plt.savefig(save_path)
         # plt.show()
     
         r_id = 0
@@ -214,6 +214,13 @@ class Inference_pb(object):
                 l_cnt = (l_cnt * cScale).astype("int32")
                 # IMPORTANT
                 (is_line, approx_lin) = self._get_baseline(in_img, l_cnt)
+
+                ######################################################################################################
+                ######################################################################################################
+                ######################################################################################################
+                ######################################################################################################
+                print("Approx Line: ", approx_lin)
+
                 
                 if is_line == False:
                     continue
