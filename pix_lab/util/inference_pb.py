@@ -240,7 +240,7 @@ class Inference_pb(object):
         plt.axis("off")
         plt.imshow(lines, cmap='gray')
         save_path = "./out/ab.jpg"
-        plt.imsave(save_path)
+        plt.savefig(save_path)
         # plt.show()
         
     def _get_baseline(self, Oimg, Lpoly):
