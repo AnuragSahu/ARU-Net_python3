@@ -258,7 +258,7 @@ class Inference_pb(object):
         
         # plt.show()
 
-    def make_line(approx_lin, rgb):
+    def make_line(self, approx_lin, rgb):
         """
         approx line is the 4 points given by algorithm
         rgb is the image to draw the lines upon
