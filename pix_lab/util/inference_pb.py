@@ -158,6 +158,9 @@ class Inference_pb(object):
             contours, hierarchy = res_
         else:
             _, contours, hierarchy = res_
+
+        # Declare an image
+        rgb = np.zeros((in_img_rows, in_img_cols))
             
         for cnt in contours:
             min_area = 0.01
@@ -219,8 +222,9 @@ class Inference_pb(object):
                 ######################################################################################################
                 ######################################################################################################
                 ######################################################################################################
-                print(in_img_path)
-
+                
+                rgb = self.make_line(approx_lin, rgb)
+                
                 
                 if is_line == False:
                     continue
@@ -244,13 +248,27 @@ class Inference_pb(object):
                 baseline = pa.points_to_str(approx_lin)
                 page.add_baseline(baseline, text_line)
                 n_lines += 1
+        
+        img_name = "./out/linesOP/" + in_img_path.split("/")[-1]
+        cv2.imwrite(img_name, rgb)
         page.save_xml()
         
         # plt.axis("off")
         # plt.imshow(lines, cmap='gray')
         
         # plt.show()
+
+    def make_line(approx_lin, rgb):
+        """
+        approx line is the 4 points given by algorithm
+        rgb is the image to draw the lines upon
+        ** Make sure to return the rgb image
+        """
+        for i in approx_lin:
+              rgb = cv2.circle(rgb, (i[0],i[1]), radius=2, color=(0, 0, 255), thickness=-1)
         
+        return rgb
+
     def _get_baseline(self, Oimg, Lpoly):
         """
         """
