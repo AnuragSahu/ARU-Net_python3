@@ -239,8 +239,8 @@ class Inference_pb(object):
                 n_lines += 1
         page.save_xml()
         
-        plt.axis("off")
-        plt.imshow(lines, cmap='gray')
+        # plt.axis("off")
+        # plt.imshow(lines, cmap='gray')
         
         # plt.show()
         
