@@ -1,5 +1,5 @@
 from __future__ import print_function, division
-
+import imageio
 import cv2
 import random
 from page_xml.xmlPAGE import pageData
@@ -107,14 +107,12 @@ class Inference_pb(object):
             "Inference avg update time: {:.2f} ms".format(time_used))
 
     def load_img(self, path, scale, mode):
-        aImg = misc.imread(path, mode=mode)
-        if scale != 1:
-            sImg = misc.imresize(aImg, scale, interp='bicubic')
-            fImg = sImg
-        else:
-            fImg = aImg
-            
-        if len(fImg.shape) == 2:
+        aImg = cv2.imread(path) 
+        aImg = cv2.cvtColor(aImg, cv2.COLOR_RGB2GRAY)
+        dim_size = (int(aImg.shape[1]*scale), int(aImg.shape[0]*scale))
+        sImg = cv2.resize(aImg, dim_size, interpolation=cv2.INTER_AREA)
+        fImg = sImg
+        if len(sImg.shape) == 2:
             fImg = np.expand_dims(fImg,2)
         fImg = np.expand_dims(fImg,0)
 
