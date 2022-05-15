@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import os
 from scipy import misc
 from scipy.ndimage import affine_transform as scipy_affine_transform
 from scipy.ndimage.filters import gaussian_filter
@@ -57,6 +58,19 @@ def calcAffineMatrix(sourcePoints, targetPoints):
     a0, a1, a2, a3, a4, a5 = result
     affineTrafo = np.float32([[a0, a2, a4], [a1, a3, a5]])
     return affineTrafo
+
+def read_images_from_folder(pathToFolder):
+    '''
+    :param pathToList:
+    :return:
+    '''
+    files = os.listdir(pathToFolder)
+    list_of_path = []
+    for f in files:
+        if(f.split(".")[-1] != "md"):
+            path = pathToFolder + f;
+            list_of_path.append(path)
+    return list_of_path
 
 def affine_transform(image, affine_value):
     shape = image.shape
