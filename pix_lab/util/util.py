@@ -8,8 +8,8 @@ from scipy.ndimage.interpolation import map_coordinates
 def load_graph(frozen_graph_filename):
     # We load the protobuf file from the disk and parse it to retrieve the
     # unserialized graph_def
-    with tf.gfile.GFile(frozen_graph_filename, "rb") as f:
-        graph_def = tf.GraphDef()
+    with tf.io.gfile.GFile(frozen_graph_filename, "rb") as f:
+        graph_def = tf.compact.v1.GraphDef()
         graph_def.ParseFromString(f.read())
 
     # Then, we can use again a convenient built-in function to import a graph_def into the
