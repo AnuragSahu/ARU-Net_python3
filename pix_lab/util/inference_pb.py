@@ -39,7 +39,7 @@ class Inference_pb(object):
         
         retVal = []
         
-        with tf.Session(graph=self.graph, config=session_conf) as sess:
+        with tf.compat.v1.Session(graph=self.graph, config=session_conf) as sess:
             x = self.graph.get_tensor_by_name('inImg:0')
             predictor = self.graph.get_tensor_by_name('output:0')
             print("Start Inference")
