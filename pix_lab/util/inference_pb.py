@@ -140,8 +140,8 @@ class Inference_pb(object):
         lines[line_mask > 0.1] = 1
         lines = lines.astype(np.uint8)
         
-        # plt.axis("off")
-        # plt.imshow(lines, cmap='gray')
+        plt.axis("off")
+        plt.imshow(lines, cmap='gray')
         save_path = "./out/ab.jpg"
         plt.savefig(save_path)
         # plt.show()
