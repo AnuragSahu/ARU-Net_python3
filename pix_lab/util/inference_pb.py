@@ -34,7 +34,7 @@ class Inference_pb(object):
         if val_size is None:
             print("No Inference Data available. Skip Inference.")
             return
-        session_conf = tf.ConfigProto()
+        session_conf = tf.compat.v1.ConfigProto()
         session_conf.gpu_options.visible_device_list = gpu_device
         
         retVal = []
